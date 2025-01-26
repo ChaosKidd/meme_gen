@@ -115,16 +115,13 @@ Contributions are welcome! Please follow these steps:
 ## 📜 License
 Distributed under the MIT License. See `LICENSE` for more information.
 
-## 📞 Contact
-Your Name - your.email@example.com
-
-Project Link: [https://github.com/yourusername/meme-generator](https://github.com/yourusername/meme-generator)
-
 ## 🙏 Acknowledgements
 - [Firebase](https://firebase.google.com/)
 - [Node.js](https://nodejs.org/)
 - [Express.js](https://expressjs.com/)
-- Open-source community
+- [ChaosKidd](https://github.com/ChaosKidd) - Front-End developer
+- [Stochko](https://github.com/Stochko) - Front-End developer
+- [Kristiyan](https://github.com/kriskata06) Stoykov - Full-Stack developer
 
 ---
 
