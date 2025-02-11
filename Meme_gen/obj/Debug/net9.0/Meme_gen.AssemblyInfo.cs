@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Meme_gen")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b2faeb1b443c9f8659b7061bad65a4b8796900e9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bad7083c44272962ca88dd34bc1f4c3c47dfa3d1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Meme_gen")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Meme_gen")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
