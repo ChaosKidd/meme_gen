@@ -1,8 +1,8 @@
 using System.Diagnostics;
-using Meme_gen.Models;
+using meme_gen.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Meme_gen.Controllers
+namespace meme_gen.Controllers
 {
     public class HomeController : Controller
     {

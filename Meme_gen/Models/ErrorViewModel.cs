@@ -1,4 +1,4 @@
-namespace Meme_gen.Models
+namespace meme_gen.Models
 {
     public class ErrorViewModel
     {
