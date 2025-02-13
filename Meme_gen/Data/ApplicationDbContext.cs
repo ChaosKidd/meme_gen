@@ -11,6 +11,6 @@ namespace meme_gen.Data
         {
         }
         DbSet<UserBookmark> userBookmarks { get; set; }
-        DbSet<MemeTemplate> memes { get; set; } 
+        DbSet<MemeTemplate> memes { get; set; }
     }
 }
