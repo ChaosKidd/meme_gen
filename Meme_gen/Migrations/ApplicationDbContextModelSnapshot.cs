@@ -244,22 +244,6 @@ namespace Meme_gen.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Memes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateAdded = new DateTime(2024, 2, 14, 10, 30, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "/images/meme_1.jpeg",
-                            Title = "Meme 1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DateAdded = new DateTime(2024, 2, 14, 10, 30, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "/images/meme_2.jpeg",
-                            Title = "Meme 2"
-                        });
                 });
 
             modelBuilder.Entity("meme_gen.Models.UserBookmark", b =>
