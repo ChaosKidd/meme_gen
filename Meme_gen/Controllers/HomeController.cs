@@ -24,8 +24,6 @@ namespace meme_gen.Controllers
             return View(memes);
         }
 
-        
-
         public IActionResult Privacy()
         {
             return View();

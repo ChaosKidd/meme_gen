@@ -4,12 +4,9 @@
     @foreach (var meme in Model)
     {
         <div class="meme-card">
-            <img src="@meme.ImagePath" alt="meme" />
-            <div class="overlay">
-                <button class="like-btn" data-meme-id="@meme.Id">❤️</button>
-                <a href="@Url.Action("Edit", "Meme", new { id = meme.Id })" 
-                   class="btn btn-primary">Edit</a>
-            </div>
+            <a href="@Url.Action("Edit", "Meme", new { id = meme.Id })">
+                <img src="@meme.ImagePath" alt="@meme.Title" class="meme-image" />
+            </a>
         </div>
     }
 </div>
