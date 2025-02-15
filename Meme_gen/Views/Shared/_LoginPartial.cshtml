@@ -6,11 +6,12 @@
 @if (SignInManager.IsSignedIn(User))
 {
    <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle text-dark" href="#" id="userDropdown" role="button">
+    <a class="nav-link dropdown-toggle text-dark" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
         Hello @User.Identity?.Name!
     </a>
     <div class="dropdown-menu" aria-labelledby="userDropdown">
         <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">My Profile</a>
+        <a class="dropdown-item" asp-controller="Meme" asp-action="MyBookmarks">Bookmarks</a> <!-- Added -->
         <form class="dropdown-item m-0 p-0" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button type="submit" class="dropdown-item">Logout</button>
         </form>
@@ -20,8 +21,6 @@
 }
 else
 {
-    <li class="nav-item">
-    </li>
     <li class="nav-item">
         <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
