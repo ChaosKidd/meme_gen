@@ -66,3 +66,41 @@ a {
 .nav-pills .nav-link {
   color: #ff9f1c;
 }
+
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.meme-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.meme-card img {
+  width: 100%;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.5);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.draggable-text {
+  position: absolute;
+  background: rgba(255,255,255,0.8);
+  padding: 5px;
+  cursor: move;
+  min-width: 50px;
+}

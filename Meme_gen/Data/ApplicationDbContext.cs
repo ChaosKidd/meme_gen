@@ -10,7 +10,10 @@ namespace meme_gen.Data
             : base(options)
         {
         }
-        DbSet<UserBookmark> userBookmarks { get; set; }
-        DbSet<MemeTemplate> memes { get; set; }
+        public DbSet<UserBookmark> UserBookmarks { get; set; }
+        public DbSet<MemeTemplate> Memes { get; set; } 
+
+        
+
     }
 }
