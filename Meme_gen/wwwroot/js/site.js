@@ -55,6 +55,32 @@ document.addEventListener("DOMContentLoaded", function () {
           }
       });
   }
+  var bookmarkBtn = document.getElementById('bookmarkBtn');
+    if (bookmarkBtn) {
+        bookmarkBtn.addEventListener('click', function () {
+            fetch('/Meme/ToggleBookmark', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ memeId: parseInt(memeId) })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                // Optionally update the UI based on data.bookmarked (e.g., change icon color)
+                if (data.bookmarked) {
+                    bookmarkBtn.classList.add("bookmarked"); // For example, add a CSS class
+                } else {
+                    bookmarkBtn.classList.remove("bookmarked");
+                }
+            })
+            .catch(err => console.error(err));
+        });
+    }
+
+
+
 
   // Save meme button event: sends the canvas data to the server
   var saveMemeBtn = document.getElementById('saveMemeBtn');
