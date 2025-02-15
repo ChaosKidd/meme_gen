@@ -68,43 +68,59 @@ a {
 }
 
 .masonry-grid {
+  width: 100%;
+  margin: 20px auto;
+/*
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
+*/
+  columns: 4;
+  column-gap: 20px;
 }
 
 .meme-card {
+  /*
+  
+  */
   position: relative;
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.meme-card img {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: white;
   width: 100%;
+  margin-bottom: 10px;
+}
+
+.meme-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.meme-image {
+  width: 100%;
+  height: auto;
   display: block;
+  transition: transform 0.3s ease;
 }
 
-.overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
+.meme-card:hover .meme-image {
+  max-width: 100%;
+  transform: scale(1.03);
 }
-
-.draggable-text {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 5px;
-  cursor: move;
-  min-width: 50px;
+@media (max-width: 1200px) {
+  .masonry-grid {
+    columns: 3;
+  }
 }
-
-nav-item.dropdown:hover .dropdown-menu {
-  display: block !important;
+@media (max-width: 768px) {
+  .masonry-grid {
+    columns: 2;
+  }
+}
+@media (max-width: 480px) {
+  .masonry-grid {
+    columns: 1;
+  }
 }

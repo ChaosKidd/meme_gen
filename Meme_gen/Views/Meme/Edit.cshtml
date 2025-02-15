@@ -1,0 +1,26 @@
+@model meme_gen.Models.MemeTemplate
+@{
+    ViewData["Title"] = "Edit Meme";
+}
+
+<h2>Edit Meme</h2>
+
+<!-- 
+  Pass the meme ID and image path via data attributes on the canvas 
+-->
+<canvas id="memeCanvas" width="800" height="600" 
+        data-meme-id="@Model.Id" 
+        data-image-path="@Model.ImagePath"
+        style="border: 1px solid #ccc;"></canvas>
+<br />
+<button id="addTextBtn" class="btn btn-primary">Add Text</button>
+<button id="saveMemeBtn" class="btn btn-success">Save Meme</button>
+<button id="removeTextBtn" class="btn btn-danger">Remove Selected Text</button>
+
+
+@section Scripts {
+    <!-- Include Fabric.js from a CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+    <!-- Reference your custom site.js -->
+    <script src="~/js/site.js"></script>
+}

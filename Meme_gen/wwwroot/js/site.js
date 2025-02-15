@@ -2,74 +2,77 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+
 document.addEventListener("DOMContentLoaded", function () {
-  const canvas = document.getElementById("memeCanvas");
-  const ctx = canvas.getContext("2d");
-  const img = new Image();
+  // Check if we are on a page with the meme canvas.
+  var canvasElement = document.getElementById('memeCanvas');
+  if (!canvasElement) return; // Nothing to do if no canvas exists
 
-  img.onload = function () {
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0);
-  };
-  img.src = memeUrl; // Set this variable in your View
+  // Initialize Fabric.js canvas
+  var canvas = new fabric.Canvas('memeCanvas');
 
-  // Like functionality
-  $(".like-btn").click(function () {
-    const memeId = $(this).data("meme-id");
-    $.post("/Meme/Like/" + memeId)
-      .done(function (response) {
-        if (response.success) {
-          $(this).addClass("liked");
-        }
-      })
-      .fail(function () {
-        window.location.href = "/Identity/Account/Login";
+    // Retrieve meme id and background image path from data attributes
+    var memeId = canvasElement.getAttribute('data-meme-id');
+    var bgImagePath = canvasElement.getAttribute('data-image-path');
+
+  if (bgImagePath) {
+      fabric.Image.fromURL(bgImagePath, function (img) {
+          // Set canvas dimensions to the image's natural dimensions
+          canvas.setWidth(img.width);
+          canvas.setHeight(img.height);
+          // Set the background image without scaling (the canvas now matches the image size)
+          canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
       });
-  });
-});
+  }
 
-function addTextBox() {
-  const textDiv = document.createElement("div");
-  textDiv.contentEditable = true;
-  textDiv.className = "draggable-text";
-  document.getElementById("textBoxContainer").appendChild(textDiv);
+  // Add text button event: creates a draggable textbox
+  var addTextBtn = document.getElementById('addTextBtn');
+  if (addTextBtn) {
+      addTextBtn.addEventListener('click', function () {
+          var textbox = new fabric.Textbox('Enter text', {
+              left: 100,
+              top: 100,
+              fontSize: 50,
+              fill: '#ffffff',
+              stroke: '#000000',
+              strokeWidth: 0.75,
+              editable: true
+          });
+          canvas.add(textbox);
+          canvas.setActiveObject(textbox);
+      });
+  }
 
-  // Make it draggable (requires jQuery UI)
-  $(textDiv).draggable();
-}
+  var removeTextBtn = document.getElementById('removeTextBtn');
+  if (removeTextBtn) {
+      removeTextBtn.addEventListener('click', function () {
+          var activeObject = canvas.getActiveObject();
+          if (activeObject && activeObject.type === 'textbox') {
+              canvas.remove(activeObject);
+          } else {
+              alert("Please select a textbox to remove.");
+          }
+      });
+  }
 
-function saveImage() {
-  // Draw all text onto canvas
-  const texts = document.getElementsByClassName("draggable-text");
-  Array.from(texts).forEach((textDiv) => {
-    const rect = textDiv.getBoundingClientRect();
-    ctx.fillText(textDiv.innerText, rect.left, rect.top);
-  });
+  // Save meme button event: sends the canvas data to the server
+  var saveMemeBtn = document.getElementById('saveMemeBtn');
+  if (saveMemeBtn) {
+    saveMemeBtn.addEventListener('click', function () {
+        // Get the image data from the canvas as a base64-encoded PNG
+        var dataURL = canvas.toDataURL('image/png');
 
-  // Download image
-  const link = document.createElement("a");
-  link.download = "meme.png";
-  link.href = canvas.toDataURL("image/png");
-  link.click();
-}
+        // Create a temporary link element
+        var link = document.createElement('a');
+        link.href = dataURL;
+        link.download = 'meme.png'; // The name of the file to be downloaded
 
-//hover function for navbar
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".nav-item.dropdown").forEach(function (dropdown) {
-    dropdown.addEventListener("mouseenter", function () {
-      dropdown.classList.add("show");
-      var menu = dropdown.querySelector(".dropdown-menu");
-      if (menu) {
-        menu.classList.add("show");
-      }
+        // Append the link, trigger click, and then remove it
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
     });
-    dropdown.addEventListener("mouseleave", function () {
-      dropdown.classList.remove("show");
-      var menu = dropdown.querySelector(".dropdown-menu");
-      if (menu) {
-        menu.classList.remove("show");
-      }
-    });
-  });
+  }
 });

@@ -25,6 +25,36 @@ namespace meme_gen.Data
                     {
                         ImagePath = "/images/meme_3.jpg",
                         DateAdded = DateTime.Now
+                    },
+                    new MemeTemplate
+                    {
+                        ImagePath = "/images/meme_4.jpg",
+                        DateAdded = DateTime.Now
+                    },
+                    new MemeTemplate
+                    {
+                        ImagePath = "/images/meme_5.jpg",
+                        DateAdded = DateTime.Now
+                    },
+                    new MemeTemplate
+                    {
+                        ImagePath = "/images/meme_6.jpg",
+                        DateAdded = DateTime.Now
+                    },
+                    new MemeTemplate
+                    {
+                        ImagePath = "/images/meme_7.jpg",
+                        DateAdded = DateTime.Now
+                    },
+                    new MemeTemplate
+                    {
+                        ImagePath = "/images/meme_8.jpg",
+                        DateAdded = DateTime.Now
+                    },
+                    new MemeTemplate
+                    {
+                        ImagePath = "/images/meme_9.jpg",
+                        DateAdded = DateTime.Now
                     }
                 );
                 context.SaveChanges();
