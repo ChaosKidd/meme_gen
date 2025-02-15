@@ -1,8 +1,15 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<meme_gen.Models.MemeTemplate>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="masonry-grid">
+    @foreach (var meme in Model)
+    {
+        <div class="meme-card">
+            <img src="@meme.ImagePath" alt="meme" />
+            <div class="overlay">
+                <button class="like-btn" data-meme-id="@meme.Id">❤️</button>
+                <a href="@Url.Action("Edit", "Meme", new { id = meme.Id })" 
+                   class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+    }
 </div>

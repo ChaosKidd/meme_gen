@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using meme_gen.Data;
 
@@ -11,9 +12,11 @@ using meme_gen.Data;
 namespace Meme_gen.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250213224102_AddingImages")]
+    partial class AddingImages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -249,14 +252,14 @@ namespace Meme_gen.Migrations
                         new
                         {
                             Id = 1,
-                            DateAdded = new DateTime(2024, 2, 14, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            DateAdded = new DateTime(2025, 2, 13, 22, 41, 2, 75, DateTimeKind.Utc).AddTicks(3933),
                             ImagePath = "/images/meme_1.jpeg",
                             Title = "Meme 1"
                         },
                         new
                         {
                             Id = 2,
-                            DateAdded = new DateTime(2024, 2, 14, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            DateAdded = new DateTime(2025, 2, 13, 22, 41, 2, 75, DateTimeKind.Utc).AddTicks(4164),
                             ImagePath = "/images/meme_2.jpeg",
                             Title = "Meme 2"
                         });
