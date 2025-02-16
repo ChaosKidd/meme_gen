@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Edit Custom Meme";
+}
+
+<div class="container">
+    <div class="row">
+        <!-- Left Column: Canvas / Editing Area -->
+        <div class="col-md-8">
+            <h2>Edit Custom Meme</h2>
+            <canvas id="memeCanvas" style="border: 1px solid #ccc;"></canvas>
+        </div>
+        <!-- Right Column: Feature Panel -->
+        <div class="col-md-4">
+            <h3>Features</h3>
+            <div class="btn-group-vertical" style="width:100%;">
+                <button id="addTextBtn" class="btn btn-primary mb-2">Add Text</button>
+                <button id="removeTextBtn" class="btn btn-danger mb-2">Remove Selected Text</button>
+                <button id="removeAllTextBtn" class="btn btn-danger mb-2">Remove All Text</button>
+                <button id="saveMemeBtn" class="btn btn-success mb-2">Download Meme</button>
+            </div>
+            <hr />
+            <div class="mb-2">
+                <label for="fillColorPicker">Fill Color:</label>
+                <input type="color" id="fillColorPicker" value="#ffffff" class="form-control" />
+                <button id="applyFillColorBtn" class="btn btn-info btn-sm mt-1">Apply Fill</button>
+            </div>
+            <div class="mb-2">
+                <label for="strokeColorPicker">Outline Color:</label>
+                <input type="color" id="strokeColorPicker" value="#000000" class="form-control" />
+                <button id="applyStrokeColorBtn" class="btn btn-info btn-sm mt-1">Apply Outline</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Include Fabric.js from a CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+    <!-- Reference a custom JS file for editing custom memes -->
+    <script src="~/js/editCustom.js"></script>
+}

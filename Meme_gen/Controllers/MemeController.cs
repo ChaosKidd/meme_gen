@@ -31,6 +31,12 @@ namespace meme_gen.Controllers
             return View(meme);
         }
 
+        public IActionResult EditCustom()
+        {
+            // This view will load the custom image from sessionStorage (client-side).
+            return View();
+        }
+
         [HttpGet]
         public async Task<IActionResult> MyBookmarks()
         {
@@ -90,8 +96,6 @@ namespace meme_gen.Controllers
                 return Json(new { success = true, bookmarked = true, message = "Meme bookmarked!" });
             }
         }
-        
-
 
         // POST: /Meme/SaveEditedMeme
         // Expects JSON with memeId and imageData (base64 string)
