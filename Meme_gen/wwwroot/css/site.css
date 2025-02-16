@@ -70,18 +70,11 @@ a {
 .masonry-grid {
   width: 100%;
   margin: 20px auto;
-/*
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-*/
   columns: 4;
   column-gap: 20px;
 }
 
 .meme-card {
-  /*
-  
-  */
   position: relative;
   overflow: hidden;
   border-radius: 10px;
