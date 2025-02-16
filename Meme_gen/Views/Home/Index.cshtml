@@ -1,18 +1,17 @@
 ﻿@model IEnumerable<meme_gen.Models.MemeTemplate>
 
-
 <div class="masonry-grid">
     <!-- Upload Card: Allows user to upload a custom image -->
-    <div class="meme-card upload-card">
+    <div class="meme-card upload-card text-center">
         <!-- Hidden file input -->
         <input type="file" id="customImageInput" accept="image/*" style="display:none;" />
-        <!-- Preview Area -->
+        <!-- Clickable Upload Area -->
         <div id="uploadPreview" style="cursor:pointer; padding:20px; text-align:center;">
-            <p>Click to upload your own meme</p>
+            <p id="uploadText">Click to upload your own meme</p>
             <img id="uploadPreviewImg" src="" alt="Your custom meme" style="max-width:100%; display:none;" />
         </div>
-        <!-- Edit button appears after image is chosen -->
-        <button id="editCustomBtn" class="btn btn-primary" style="display:none;">Edit Custom Meme</button>
+        <!-- Edit button (Hidden initially) -->
+        <button id="editCustomBtn" class="btn btn-primary mt-3" style="display:none;">Edit Custom Meme</button>
     </div>
 
     <!-- Existing Meme Cards -->
@@ -28,31 +27,41 @@
 
 @section Scripts {
     <script>
-        // When user clicks the preview area, trigger file input
-        document.getElementById('uploadPreview').addEventListener('click', function () {
-            document.getElementById('customImageInput').click();
-        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const fileInput = document.getElementById('customImageInput');
+            const previewArea = document.getElementById('uploadPreview');
+            const previewImg = document.getElementById('uploadPreviewImg');
+            const editButton = document.getElementById('editCustomBtn');
+            const uploadText = document.getElementById('uploadText');
 
-        // On file selection, read the file and preview it
-        document.getElementById('customImageInput').addEventListener('change', function (e) {
-            var file = e.target.files[0];
-            if (!file) return;
-            var reader = new FileReader();
-            reader.onload = function (event) {
-                var dataURL = event.target.result;
-                var previewImg = document.getElementById('uploadPreviewImg');
-                previewImg.src = dataURL;
-                previewImg.style.display = 'block';
-                document.getElementById('editCustomBtn').style.display = 'block';
-                // Store the custom image data in sessionStorage
-                sessionStorage.setItem('customMemeImage', dataURL);
-            };
-            reader.readAsDataURL(file);
-        });
+            // Click preview to trigger file input
+            previewArea.addEventListener('click', function () {
+                fileInput.click();
+            });
 
-        // When the "Edit Custom Meme" button is clicked, redirect to the custom edit view
-        document.getElementById('editCustomBtn').addEventListener('click', function () {
-            window.location.href = '/Meme/EditCustom';
+            // On file selection, read and preview image
+            fileInput.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const dataURL = event.target.result;
+                    previewImg.src = dataURL;
+                    previewImg.style.display = 'block';
+                    editButton.style.display = 'block';
+                    uploadText.innerText = "Click to upload another meme";
+
+                    // Store the image in localStorage so it's available on the Edit page
+                    localStorage.setItem('customMemeImage', dataURL);
+                };
+                reader.readAsDataURL(file);
+            });
+
+            // Redirect to the edit page when the button is clicked
+            editButton.addEventListener('click', function () {
+                window.location.href = '/Meme/EditCustom';
+            });
         });
     </script>
 }

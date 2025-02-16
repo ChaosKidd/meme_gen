@@ -7,8 +7,9 @@
         <!-- Left Column: Canvas / Editing Area -->
         <div class="col-md-8">
             <h2>Edit Custom Meme</h2>
-            <canvas id="memeCanvas" style="border: 1px solid #ccc;"></canvas>
+            <canvas id="memeCanvas" width="500" height="500" style="border: 1px solid #ccc;"></canvas>
         </div>
+        
         <!-- Right Column: Feature Panel -->
         <div class="col-md-4">
             <h3>Features</h3>
@@ -36,6 +37,95 @@
 @section Scripts {
     <!-- Include Fabric.js from a CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
-    <!-- Reference a custom JS file for editing custom memes -->
-    <script src="~/js/editCustom.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const storedImage = localStorage.getItem('customMemeImage');
+            if (!storedImage) {
+                alert('No image found. Please upload one first.');
+                window.location.href = '/';
+                return;
+            }
+
+            // Initialize Fabric.js Canvas
+            const canvas = new fabric.Canvas("memeCanvas", {
+                width: 500,
+                height: 500
+            });
+
+            // Load the image onto the canvas
+            fabric.Image.fromURL(storedImage, function (img) {
+                img.scaleToWidth(canvas.width);
+                img.scaleToHeight(canvas.height);
+                canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
+            });
+
+            // Add Text Feature
+            document.getElementById("addTextBtn").addEventListener("click", function () {
+                const text = prompt("Enter text:");
+                if (text) {
+                    const fillColor = document.getElementById("fillColorPicker").value;
+                    const outlineColor = document.getElementById("strokeColorPicker").value;
+
+                    const textObject = new fabric.Textbox(text, {
+                        left: 50,
+                        top: 50,
+                        fontSize: 40,
+                        fill: fillColor,
+                        stroke: outlineColor,
+                        strokeWidth: 2,
+                        fontFamily: "Arial",
+                        textAlign: "center",
+                        editable: true
+                    });
+
+                    canvas.add(textObject);
+                    canvas.setActiveObject(textObject);
+                }
+            });
+
+            // Remove Selected Text
+            document.getElementById("removeTextBtn").addEventListener("click", function () {
+                const activeObject = canvas.getActiveObject();
+                if (activeObject && activeObject.type === "textbox") {
+                    canvas.remove(activeObject);
+                }
+            });
+
+            // Remove All Text
+            document.getElementById("removeAllTextBtn").addEventListener("click", function () {
+                canvas.getObjects().forEach(obj => {
+                    if (obj.type === "textbox") {
+                        canvas.remove(obj);
+                    }
+                });
+            });
+
+            // Apply Fill Color
+            document.getElementById("applyFillColorBtn").addEventListener("click", function () {
+                const activeObject = canvas.getActiveObject();
+                if (activeObject && activeObject.type === "textbox") {
+                    activeObject.set("fill", document.getElementById("fillColorPicker").value);
+                    canvas.renderAll();
+                }
+            });
+
+            // Apply Outline Color
+            document.getElementById("applyStrokeColorBtn").addEventListener("click", function () {
+                const activeObject = canvas.getActiveObject();
+                if (activeObject && activeObject.type === "textbox") {
+                    activeObject.set("stroke", document.getElementById("strokeColorPicker").value);
+                    canvas.renderAll();
+                }
+            });
+
+            // Download Meme
+            document.getElementById("saveMemeBtn").addEventListener("click", function () {
+                const link = document.createElement("a");
+                link.download = "custom_meme.png";
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            });
+        });
+    </script>
 }
