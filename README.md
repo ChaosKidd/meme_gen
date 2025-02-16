@@ -80,11 +80,12 @@ Meme_gen is an ASP.NET Core MVC web application that allows users to create, edi
 |Action  | |Action  |
 +---+---+ +----+----+
     |          |
-    v    +-----+-----+
-+-------+|     |     |
-|Edit   ||     |     |
-|Memes  ||     |     |
-+-------+v     v     v
+    |          v 
+    v        +-----+
++-------+    |     |
+|Edit   |    |     |
+|Memes  |    |     |
++-------+    v     v
     |    +-----+ +-----+
     |    |Edit | |Book |
     v    |Meme | |mark |
@@ -98,7 +99,7 @@ Meme_gen is an ASP.NET Core MVC web application that allows users to create, edi
 ```
 
 ## Contributors
-[WzëBe](https://github.com/CootsAndLoons) - Project Lead, Developer
-[ChaosKidd](https://github.com/ChaosKidd) - Front-End developer
-[Stochko](https://github.com/Stochko) - Front-End developer
-[Kristiyan Stoykov](https://github.com/kriskata06) - Full-Stack developer
+ - [WzëBe](https://github.com/CootsAndLoons) - Project Lead, Developer
+ - [ChaosKidd](https://github.com/ChaosKidd) - Front-End developer
+ - [Stochko](https://github.com/Stochko) - Front-End developer
+ - [Kristiyan Stoykov](https://github.com/kriskata06) - Full-Stack developer
