@@ -7,24 +7,24 @@
 
 @if (!Model.Any())
 {
-    <p>You have no bookmarks yet.</p>
+    <p>You have no bookmarks yet :[</p>
 }
 else
 {
-    <div class="row">
-        @foreach (var bookmark in Model)
-        {
-            <div class="col-md-4">
-                <div>
-                    @if (bookmark.MemeTemplate != null)
-                    {
-                        <img src="@bookmark.MemeTemplate.ImagePath" alt="Bookmarked Meme" style="max-width:100%;" />
-                    }
-                    <p>Bookmarked on: @bookmark.BookmarkedDate</p>
-                    <!-- Link to edit or do anything else with the meme -->
-                    <a asp-action="Edit" asp-route-id="@bookmark.MemeTemplateId" class="btn btn-primary">Edit Again</a>
+    <div class="masonry-grid">
+
+            @foreach (var bookmark in Model)
+            {
+                <div class="meme-card">
+                    <div>
+                        @if (bookmark.MemeTemplate != null)
+                        {
+                            <a href="@Url.Action("Edit", "Meme", new { id = bookmark.MemeTemplateId })">
+                                <img src="@bookmark.MemeTemplate.ImagePath" alt="Bookmarked Meme" class="meme-image"  />
+                            </a>
+                        }
+                    </div>
                 </div>
-            </div>
-        }
+            }
     </div>
 }
