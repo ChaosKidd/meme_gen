@@ -51,7 +51,7 @@ namespace Meme_gen.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "memes",
+                name: "Memes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -62,7 +62,7 @@ namespace Meme_gen.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_memes", x => x.Id);
+                    table.PrimaryKey("PK_Memes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -172,29 +172,28 @@ namespace Meme_gen.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "userBookmarks",
+                name: "UserBookmarks",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    MemeTemplateId = table.Column<int>(type: "int", nullable: false),
+                    MemeTemplateId = table.Column<int>(type: "int", nullable: true),
                     BookmarkedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_userBookmarks", x => x.Id);
+                    table.PrimaryKey("PK_UserBookmarks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_userBookmarks_AspNetUsers_UserId",
+                        name: "FK_UserBookmarks_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_userBookmarks_memes_MemeTemplateId",
+                        name: "FK_UserBookmarks_Memes_MemeTemplateId",
                         column: x => x.MemeTemplateId,
-                        principalTable: "memes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalTable: "Memes",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -237,13 +236,13 @@ namespace Meme_gen.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_userBookmarks_MemeTemplateId",
-                table: "userBookmarks",
+                name: "IX_UserBookmarks_MemeTemplateId",
+                table: "UserBookmarks",
                 column: "MemeTemplateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_userBookmarks_UserId",
-                table: "userBookmarks",
+                name: "IX_UserBookmarks_UserId",
+                table: "UserBookmarks",
                 column: "UserId");
         }
 
@@ -266,7 +265,7 @@ namespace Meme_gen.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "userBookmarks");
+                name: "UserBookmarks");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -275,7 +274,7 @@ namespace Meme_gen.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "memes");
+                name: "Memes");
         }
     }
 }

@@ -257,9 +257,6 @@ namespace Meme_gen.Migrations
                     b.Property<DateTime>("BookmarkedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CustomImageData")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("MemeTemplateId")
                         .HasColumnType("int");
 

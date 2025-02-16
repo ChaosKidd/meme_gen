@@ -12,7 +12,7 @@ using meme_gen.Data;
 namespace Meme_gen.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250213210131_initial")]
+    [Migration("20250216005034_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -246,7 +246,7 @@ namespace Meme_gen.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("memes");
+                    b.ToTable("Memes");
                 });
 
             modelBuilder.Entity("meme_gen.Models.UserBookmark", b =>
@@ -260,7 +260,7 @@ namespace Meme_gen.Migrations
                     b.Property<DateTime>("BookmarkedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MemeTemplateId")
+                    b.Property<int?>("MemeTemplateId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
@@ -272,7 +272,7 @@ namespace Meme_gen.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("userBookmarks");
+                    b.ToTable("UserBookmarks");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -330,9 +330,7 @@ namespace Meme_gen.Migrations
                 {
                     b.HasOne("meme_gen.Models.MemeTemplate", "MemeTemplate")
                         .WithMany()
-                        .HasForeignKey("MemeTemplateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MemeTemplateId");
 
                     b.HasOne("meme_gen.Models.ApplicationUser", "User")
                         .WithMany("Bookmarks")

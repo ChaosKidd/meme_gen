@@ -70,7 +70,7 @@ a {
 .masonry-grid {
   width: 100%;
   margin: 20px auto;
-  columns: 4;
+  columns: 10;
   column-gap: 20px;
 }
 
@@ -102,9 +102,28 @@ a {
   max-width: 100%;
   transform: scale(1.03);
 }
-@media (max-width: 1200px) {
+
+@media (max-width: 1920px) {
+  .masonry-grid{
+    columns: 8;
+  }
+}
+
+@media (max-width: 1600px) {
+  .masonry-grid{
+    columns: 6;
+  }
+}
+
+@media (max-width: 1366px) {
+  .masonry-grid{
+    columns:5;
+  }
+}
+
+@media (max-width: 1280px) {
   .masonry-grid {
-    columns: 3;
+    columns: 4;
   }
 }
 @media (max-width: 768px) {
